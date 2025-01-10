@@ -7,14 +7,6 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-home',
   template: `
-    <div *ngIf="(authState$ | async)?.isAuthenticated">
-      <h2>¡Bienvenido!</h2>
-      <button (click)="logout()">Cerrar sesión</button>
-      <pre>{{ userInfo | json }}</pre>
-    </div>
-    <div *ngIf="!(authState$ | async)?.isAuthenticated">
-      <button (click)="login()">Iniciar sesión con Okta</button>
-    </div>
   `,
   standalone: true,
   imports: [CommonModule]

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  template: '<p>Procesando login...</p>'
+  template: '<p>loging in...</p>'
 })
 export class LoginComponent implements OnInit {
   constructor(
