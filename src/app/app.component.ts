@@ -8,18 +8,32 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   template: `
-    <nav style="display: flex; justify-content: space-between; align-items: center; background-color: #f0f0f0; padding: 10px;">
-      <div>LOGO</div>
-
-      <div *ngIf="(authState$ | async) as authState">
-        <a href="/next-portal">Next Portal</a>
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #f0f0f0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <div style="font-weight: bold; font-size: 1.2rem;">
+        Portal
+      </div>
+      <div style="display: flex; gap: 1rem;">
+        <button 
+          (click)="navigateTo('/')"
+          style="padding: 0.5rem 1rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;"
+          onmouseover="this.style.backgroundColor='#0056b3'"
+          onmouseout="this.style.backgroundColor='#007bff'">
+          Angular App
+        </button>
+        <button 
+          (click)="navigateTo('/next-portal')"
+          style="padding: 0.5rem 1rem; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;"
+          onmouseover="this.style.backgroundColor='#218838'"
+          onmouseout="this.style.backgroundColor='#28a745'">
+          Next.js App
+        </button>
       </div>
     </nav>
       <h1>Gainwell Angular</h1>
       <div *ngIf="(authState$ | async) as authState">
         <button *ngIf="!authState?.isAuthenticated" (click)="login()">Login</button>
-      <button *ngIf="authState?.isAuthenticated" (click)="logout()">Logout</button>
-    </div>
+        <button *ngIf="authState?.isAuthenticated" (click)="logout()">Logout</button>
+      </div>
     <router-outlet></router-outlet>
   `,
   standalone: true,
@@ -69,6 +83,11 @@ export class AppComponent {
 
   async logout() {
     await this.oktaAuth.signOut();
+  }
+
+  // Método para la navegación
+  navigateTo(path: string) {
+    window.location.href = `http://localhost${path}`;
   }
 }
 
